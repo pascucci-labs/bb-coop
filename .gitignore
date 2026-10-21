@@ -1,0 +1,20 @@
+# Decompiled game scripts: copyrighted game code, reference only. Never commit.
+vanilla/
+
+# Third-party mod archives (Modern Hooks, MSU, xBreditor) and extracted copies.
+libs/
+
+# Third-party build tools (BBBuilder, which provides sq_taro.exe for build.py).
+tools/
+
+# Build output.
+dist/
+
+# Local clutter.
+node_modules/
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
