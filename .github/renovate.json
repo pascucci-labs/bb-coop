@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "github>pascucci-labs/.github//config/renovate#71b8380dfaab2792ede1e73b7d37f32789867ac1"
+  ]
+}
