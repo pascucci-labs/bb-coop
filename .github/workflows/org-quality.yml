@@ -1,0 +1,32 @@
+# Managed by pascucci-labs/.github; changes require review.
+name: Organization quality
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+  schedule:
+    - cron: '23 6 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: org-quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  quality:
+    uses: pascucci-labs/.github/.github/workflows/quality.yml@71b8380dfaab2792ede1e73b7d37f32789867ac1
+    with:
+      platform-ref: 71b8380dfaab2792ede1e73b7d37f32789867ac1
+  security:
+    uses: pascucci-labs/.github/.github/workflows/security.yml@71b8380dfaab2792ede1e73b7d37f32789867ac1
+    with:
+      platform-ref: 71b8380dfaab2792ede1e73b7d37f32789867ac1
+  dependencies:
+    uses: pascucci-labs/.github/.github/workflows/dependency-audit.yml@71b8380dfaab2792ede1e73b7d37f32789867ac1
+    with:
+      platform-ref: 71b8380dfaab2792ede1e73b7d37f32789867ac1
+  performance:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    uses: pascucci-labs/.github/.github/workflows/performance.yml@71b8380dfaab2792ede1e73b7d37f32789867ac1
+    with:
+      platform-ref: 71b8380dfaab2792ede1e73b7d37f32789867ac1
